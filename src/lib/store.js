@@ -32,9 +32,9 @@ function userCollection() {
   async function createData(title, content) {
     try {
       //add new data to the collection
-      await addDoc(collection(db, uid), { title, content });
+      const docRef = await addDoc(collection(db, uid), { title, content });
       //update the store
-      init();
+      update(data => [...data, {id: docRef.id, title, content}])
     } catch (err) {
       if (!uid) throw new Error("must be logged in to use this feature")
       throw err;
