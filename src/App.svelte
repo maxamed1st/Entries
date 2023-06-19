@@ -1,23 +1,23 @@
 <script>
-  import { auth } from "./lib/firebase";
+  import {Router, navigate, Route} from "svelte-routing";
   import { user } from "./lib/store";
-  import Index from "./features/authentication/Index.svelte";
-  import { signOut } from "firebase/auth";
-function logout() {
-  if($user) {
-    signOut(auth);
-    console.log("user signed out");
-  } else {
-    console.log("No user logged in");
+  import Authentication from "./features/authentication/Authentication.svelte";
+  import Notes from "./features/notes/Notes.svelte";
+  import Read from "./features/notes/components/Read.svelte";
+  import Create from "./features/notes/components/Create.svelte";
+  $: {
+    if($user) navigate("/notes");
+    else navigate("/authenticate");
   }
-}
 </script>
-<main class="grid grid-cols-2 gap-2">
-  <Index />
-  <button on:click={logout} class="w-full mx-auto hover:text-2xl"> logout </button>
-  {#if $user}
-  {$user.email}
-  {:else}
-  no user logged in currently
-  {/if}
-</main>
+<Router>
+{#if $user}
+<Route path="/notes/read/:id" let:params>
+  <Read id={params.id} />
+</Route>
+<Route path="/notes/create" component={Create} />
+<Route path="/notes" component={Notes} />
+{:else}
+  <Route path="/authenticate" component={Authentication} />
+{/if}
+</Router>
