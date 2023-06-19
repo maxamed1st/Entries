@@ -23,7 +23,10 @@ function userCollection() {
   async function getData() {
     //Get all documents in the users collection
     const snapshot = await getDocs(collection(db, uid));
-    const data = [...snapshot.docs].map(doc => doc.data());
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
     return data;
   }
   async function createData(title, content) {
