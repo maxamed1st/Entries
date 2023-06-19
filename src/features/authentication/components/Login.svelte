@@ -9,9 +9,8 @@
   function signIn() {
     try {
       signInWithEmailAndPassword(auth, email, password);
-      console.log($user);
     } catch(err) {
-      console.log(err)
+      throw err
     } finally {
     //reset form
     email = "";
@@ -22,9 +21,8 @@
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      console.log($user);
     } catch(err) {
-      console.log(err)
+      throw err
     }
   }
 </script>

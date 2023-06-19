@@ -14,9 +14,8 @@
     try {
       //register and sign in user with email and password
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log($user, password);
     } catch (err) {
-      console.log(err);
+      throw err;
     } finally {
       //reset form
       username = "";
@@ -32,9 +31,8 @@
       provider.addScope("email");
       //sign up with a popup
       await signInWithPopup(auth, provider);
-      console.log($user);
     } catch (err) {
-      console.log(err);
+        throw err;
     }
   }
 </script>
