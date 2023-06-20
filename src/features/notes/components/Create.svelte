@@ -1,11 +1,12 @@
 <script>
-    import { navigate } from "svelte-routing";
+  import { navigate } from "svelte-routing";
   import { userCol } from "../../../lib/store";
+  import { currentFolder } from "../../../lib/store";
   let content;
   let title;
   function create() {
     //create new document in the database
-    userCol.createData(title, content);
+    userCol.createData(title, content, $currentFolder);
     //reset the input values to empty string
     title = "";
     content = "";
