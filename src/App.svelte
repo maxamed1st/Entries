@@ -5,11 +5,16 @@
   import Notes from "./features/notes/Notes.svelte";
   import Read from "./features/notes/components/Read.svelte";
   import Create from "./features/notes/components/Create.svelte";
-  $: {
-    if($user) navigate("/notes");
+  import Folders from "./features/folders/Folders.svelte";
+  import { loading } from "./lib/store";
+  $: if(!$loading) {
+    if($user) navigate("/folders");
     else navigate("/authenticate");
   }
 </script>
+{#if $loading}
+  loading..
+{/if}
 <Router>
 {#if $user}
 <Route path="/notes/read/:id" let:params>
@@ -17,6 +22,7 @@
 </Route>
 <Route path="/notes/create" component={Create} />
 <Route path="/notes" component={Notes} />
+<Route path="/folders" component={Folders} />
 {:else}
   <Route path="/authenticate" component={Authentication} />
 {/if}
