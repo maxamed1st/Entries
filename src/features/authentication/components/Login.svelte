@@ -1,6 +1,9 @@
 <script>
-  import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-  import { user } from "../../../lib/store";
+  import {
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+  } from "firebase/auth";
   import { auth } from "../../../lib/firebase";
   import GoogleIcon from "../../../assets/GoogleIcon.svelte";
 
@@ -9,37 +12,52 @@
   function signIn() {
     try {
       signInWithEmailAndPassword(auth, email, password);
-    } catch(err) {
-      throw err
-    } finally {
-    //reset form
-    email = "";
-    password = "";
+      //reset form
+      email = "";
+      password = "";
+    } catch (err) {
+      throw err;
     }
   }
   async function signInWithGoogle() {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-    } catch(err) {
-      throw err
+    } catch (err) {
+      throw err;
     }
   }
 </script>
-<div class="flex flex-col gap-2 items-center m-5">
-<form on:submit|preventDefault={signIn} class="flex flex-col gap-2 items-center ">
-  <label for="email"> Email </label>
-  <input type=text id=email name=username bind:value={email} required 
-    class="border w-48"/>
 
-  <label for="password" > Password </label>
-  <input type="password" id=password name=password bind:value={password} required 
-  class="border w-48"/>
+<form on:submit|preventDefault={signIn} class="form-control">
+  <label for="email" class="label"> Email </label>
+  <input
+    type="text"
+    id="email"
+    name="username"
+    bind:value={email}
+    required
+    class="input bg-neutral w-full"
+  />
 
-  <button type=submit class="border bg-blue-600 text-white hover:bg-blue-500 w-24 rounded-lg"> login </button>
+  <label for="password" class="label"> Password </label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    bind:value={password}
+    required
+    class="input bg-neutral w-full"
+  />
+
+  <button type="submit" class="btn btn-accent my-4"> login </button>
 </form>
-<div class=" h-16 flex gap-4">
-  <button on:click={signInWithGoogle} class="w-5 h-5"> <GoogleIcon /> </button>
-  <span> login with google </span> 
-</div>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
+  on:click={signInWithGoogle}
+  class="flex w-full h-24 p-3 gap-5 rounded-lg cursor-pointer bg-neutral hover:bg-neutral-focus"
+>
+  <button class="w-7 h-7 self-center"> <GoogleIcon /> </button>
+  <span class="border" />
+  <span class="pl-2 self-center text-2xl"> Continue with Google </span>
 </div>

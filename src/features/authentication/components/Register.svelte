@@ -1,12 +1,6 @@
 <script>
-  import {
-    createUserWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-  } from "firebase/auth";
+  import { createUserWithEmailAndPassword } from "firebase/auth";
   import { auth } from "../../../lib/firebase";
-  import { user } from "../../../lib/store";
-  import GoogleIcon from "../../../assets/GoogleIcon.svelte";
   let username = "";
   let email = "";
   let password = "";
@@ -23,69 +17,41 @@
       password = "";
     }
   };
-  async function handleSingUpWithGoogle() {
-    try {
-      //Setup auth provider
-      const provider = new GoogleAuthProvider();
-      provider.addScope("profile");
-      provider.addScope("email");
-      //sign up with a popup
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-        throw err;
-    }
-  }
 </script>
 
-<div class="flex flex-col gap-2 items-center m-5">
-  <form
-    on:submit|preventDefault={handleSingUp}
-    class="flex flex-col gap-2 items-center"
-  >
-    <label for="username"> username </label>
-    <input
-      type="text"
-      id="username"
-      name="username"
-      bind:value={username}
-      required
-      class="border w-48"
-    />
+<form on:submit|preventDefault={handleSingUp} class="form-control">
+  <label for="username" class="label"> Username </label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    bind:value={username}
+    required
+    class="input bg-neutral w-full"
+  />
 
-    <label for="email"> Email </label>
-    <input
-      type="text"
-      id="email"
-      name="username"
-      bind:value={email}
-      required
-      class="border w-48"
-    />
+  <label for="email" class="label"> Email </label>
+  <input
+    type="text"
+    id="email"
+    name="username"
+    bind:value={email}
+    required
+    class="input bg-neutral w-full"
+  />
 
-    <label for="password"> Password </label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      bind:value={password}
-      required
-      class="border w-48"
-    />
+  <label for="password" class="label"> Password </label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    bind:value={password}
+    required
+    class="input bg-neutral w-full"
+  />
 
-    <button
-      type="submit"
-      class="border bg-blue-600 text-white hover:bg-blue-500 w-24 rounded-lg"
-    >
-      signup
-    </button>
-  </form>
-  <div class=" h-16 flex gap-4">
-    <button on:click={handleSingUpWithGoogle} class="w-5 h-5">
-      <GoogleIcon />
-    </button>
-    <span> login with google </span>
-  </div>
-</div>
+  <button type="submit" class="btn btn-accent mt-4"> signup </button>
+</form>
 
 <style>
   input {

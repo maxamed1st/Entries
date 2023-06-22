@@ -3,7 +3,13 @@
   import Register from "./components/Register.svelte";
 </script>
 
-<main class="flex [&_*]:flex-1 gap-5">
-  <Register />
-  <Login />
+<main
+  class="grid place-content-center sm:grid-cols-2 w-4/5 mx-auto sm:mt-10 h-full p-5 gap-10"
+>
+  <div>
+    <Login />
+  </div>
+  <div>
+    <Register />
+  </div>
 </main>
