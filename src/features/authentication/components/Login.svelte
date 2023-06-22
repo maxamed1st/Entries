@@ -6,12 +6,15 @@
   } from "firebase/auth";
   import { auth } from "../../../lib/firebase";
   import GoogleIcon from "../../../assets/GoogleIcon.svelte";
+  import { navigate } from "svelte-routing";
 
   let email = "";
   let password = "";
-  function signIn() {
+  async function signIn() {
     try {
-      signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
+      //redirect user after successful sign
+      navigate("/folders")
       //reset form
       email = "";
       password = "";
@@ -23,6 +26,8 @@
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
+      //redirect user after successful sign
+      navigate("/folders")
     } catch (err) {
       throw err;
     }

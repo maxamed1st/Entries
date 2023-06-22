@@ -1,6 +1,7 @@
 <script>
   import { createUserWithEmailAndPassword } from "firebase/auth";
   import { auth } from "../../../lib/firebase";
+  import { navigate } from "svelte-routing";
   let username = "";
   let email = "";
   let password = "";
@@ -8,13 +9,14 @@
     try {
       //register and sign in user with email and password
       await createUserWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-      throw err;
-    } finally {
       //reset form
       username = "";
       email = "";
       password = "";
+      //redirect to folders page
+      navigate("/folders");
+    } catch (err) {
+      throw err;
     }
   };
 </script>
