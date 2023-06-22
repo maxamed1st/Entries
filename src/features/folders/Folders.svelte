@@ -1,4 +1,5 @@
 <script>
+  import Navbar from "../../components/Navbar.svelte";
   import CreateFolder from "./lib/CreateFolder.svelte";
   import { userCol, loading, currentFolder } from "../../lib/store"; 
   import { navigate } from "svelte-routing";
@@ -16,6 +17,7 @@
     navigate("/notes");
   }
 </script>
+<Navbar />
 <main class="flex flex-col gap-2 items-center">
   {#if $loading}
     loading..
