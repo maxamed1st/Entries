@@ -13,7 +13,7 @@
     if ($loading) await loading.isLoading();
     //check if current path is the base url
     const path = window.location.pathname;
-    if (path == "/") {
+    if (path == "/" || path == "/authenticate") {
       //Redirect based on authentication status
       if ($user) navigate("/folders");
       else navigate("/authenticate");

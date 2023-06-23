@@ -5,11 +5,10 @@ import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
 
 //loading state to indicate if $user and $userCol has been correctly populated
 function load() {
-  const { subscribe, set } = writable(false);
+  const { subscribe, set } = writable(true);
   let resolvePromise;
-  //set loading to false and return unresolved promise
+  //return unresolved promise
   const isLoading = () => {
-    set(true);
     return new Promise((resolve) => resolvePromise = resolve);
   }
   //set loading to false and resolve the promise
@@ -26,15 +25,13 @@ let uid;
 export const user = readable(null, set => {
   //set store to user every time user logs in or out
   const unsubscribe = onAuthStateChanged(auth, async user => {
-    //loading stage
-    loading.isLoading();
     //set user data to user store
     set(user);
     //update uid
     uid = user ? user.uid : null;
     //initialize userCol
     await userCol.init();
-    //exit loading state
+    //set loading store to false
     loading.resolve();
   });
   return unsubscribe;
