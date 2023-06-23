@@ -2,17 +2,32 @@ import { readable, writable } from "svelte/store";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+
 //loading state to indicate if $user and $userCol has been correctly populated
-export const loading = writable(true);
-//set up store to hold the current folders id
-export const currentFolder = writable("default");
+function load() {
+  const { subscribe, set } = writable(false);
+  let resolvePromise;
+  //set loading to false and return unresolved promise
+  const isLoading = () => {
+    set(true);
+    return new Promise((resolve) => resolvePromise = resolve);
+  }
+  //set loading to false and resolve the promise
+  const resolve = () => {
+    set(false);
+    if (resolvePromise) resolvePromise();
+  }
+  return { subscribe, isLoading, resolve };
+}
+export const loading = load();
+
 //set up a global uid to get the collection of the current user
 let uid;
 export const user = readable(null, set => {
-  //set store to user everytime user logs in or out
+  //set store to user every time user logs in or out
   const unsubscribe = onAuthStateChanged(auth, async user => {
     //loading stage
-    loading.set(true);
+    loading.isLoading();
     //set user data to user store
     set(user);
     //update uid
@@ -20,11 +35,13 @@ export const user = readable(null, set => {
     //initialize userCol
     await userCol.init();
     //exit loading state
-    loading.set(false);
+    loading.resolve();
   });
   return unsubscribe;
 });
 
+//set up store to hold the current folders id
+export const currentFolder = writable("default");
 function userCollection() {
   //set up writable store
   const { subscribe, set, update } = writable([]);

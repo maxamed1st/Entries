@@ -6,16 +6,25 @@
   import Read from "./features/notes/components/Read.svelte";
   import Create from "./features/notes/components/Create.svelte";
   import Folders from "./features/folders/Folders.svelte";
+  import { onMount } from "svelte";
 
-  const path = window.location.pathname;
-  $: if (!$loading && path == "/") {
-    if ($user) navigate("/folders");
-    else navigate("/authenticate");
-  }
+  onMount(async () => {
+    //make sure data is loaded correctly
+    if ($loading) await loading.isLoading();
+    //check if current path is the base url
+    const path = window.location.pathname;
+    if (path == "/") {
+      //Redirect based on authentication status
+      if ($user) navigate("/folders");
+      else navigate("/authenticate");
+    }
+  });
 </script>
 
 {#if $loading}
-  loading..
+  <div class="grid place-content-center h-[100vh]">
+    <span class="loading w-52" />
+  </div>
 {/if}
 <Router>
   {#if $user}
