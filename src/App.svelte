@@ -6,6 +6,7 @@
   import Read from "./features/notes/components/Read.svelte";
   import Create from "./features/notes/components/Create.svelte";
   import Folders from "./features/folders/Folders.svelte";
+  import ForbiddenOrNotFound from "./components/ForbiddenOrNotFound.svelte";
   import { onMount } from "svelte";
 
   onMount(async () => {
@@ -37,4 +38,5 @@
   {:else}
     <Route path="/authenticate" component={Authentication} />
   {/if}
+<Route component={ForbiddenOrNotFound} />
 </Router>
