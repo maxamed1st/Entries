@@ -10,7 +10,8 @@
   });
 
   function readDoc(e) {
-    navigate(`/notes/read/${e.target.id}`);
+    //View the note
+    navigate(`/notes/read/${e.currentTarget.id}`);
   }
 
   function createDoc(e) {
@@ -24,20 +25,22 @@
   </div>
 {:else}
   <Navbar />
-  <main class="flex flex-col gap-2 items-center p-5">
+  <main class="flex flex-col gap-2">
     {#each $userCol as doc}
       {#if doc.id !== "folders" && doc.folder == $currentFolder}
-        <button
-          on:click|preventDefault={readDoc}
-          id={doc.id}
-          class="border w-52 h-10 bg-slate-500 hover:bg-slate-400 text-white text-xl"
-          >{doc.title}</button
-        >
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div on:click={readDoc} id={doc.id}
+         class="card card-compact rounded-lg mx-2 h-24 text-secondary-content bg-secondary hover:bg-secondary-focus cursor-pointer break-all">
+          <div class="card-body gap-0 overflow-hidden">
+            <h2 class="card-title"> {doc.title} </h2>
+            <p1>{doc.content}</p1>
+          </div>
+        </div>
       {/if}
     {/each}
     <button
       on:click={createDoc}
-      class="rounded-[110%] text-2xl p-2 bg-slate-500 hover:bg-slate-400"
+      class="rounded-full w-14 h-14 self-end mr-3 fixed bottom-3 text-5xl text-base-100 hover:text-white bg-primary hover:bg-primary-focus"
     >
       +
     </button>
