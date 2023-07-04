@@ -26,30 +26,27 @@
 
 <Navbar />
 <main class="flex flex-col gap-2">
-  {#if $loading}
-    <div class="grid place-content-center h-[100vh]">
-      <span class="loading w-52" />
-    </div>
-  {:else}
-    <CreateFolder bind:showModal />
-    {#if Array.isArray(folders)}
-      {#each folders as folder}
-        {#if folder !== "folders"}
+  <CreateFolder bind:showModal />
+  {#if Array.isArray(folders)}
+    {#each folders as folder}
+      {#if folder !== "folders"}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div on:click={viewNotes} id={folder} 
-        class="card card-compact rounded-lg mx-2 text-secondary-content bg-secondary hover:bg-secondary-focus cursor-pointer">
-         <div class="card-body">
-           <h2 class="card-title"> {folder} </h2>
-         </div>
-       </div>
-        {/if}
-      {/each}
-    {/if}
+        <div
+          on:click={viewNotes}
+          id={folder}
+          class="card card-compact rounded-lg mx-2 text-secondary-content bg-secondary hover:bg-secondary-focus cursor-pointer"
+        >
+          <div class="card-body">
+            <h2 class="card-title">{folder}</h2>
+          </div>
+        </div>
+      {/if}
+    {/each}
   {/if}
   <button
-  on:click={(e) => (showModal = true)}
-  class="rounded-full w-14 h-14 self-end mr-3 fixed bottom-3 text-5xl text-base-100 hover:text-white bg-primary hover:bg-primary-focus"
->
-  +
-</button>
+    on:click={(e) => (showModal = true)}
+    class="rounded-full w-14 h-14 self-end mr-3 fixed bottom-3 text-5xl text-base-100 hover:text-white bg-primary hover:bg-primary-focus"
+  >
+    +
+  </button>
 </main>

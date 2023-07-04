@@ -15,13 +15,7 @@
   });
 </script>
 
-{#if $loading}
-  <div class="grid place-content-center h-[100vh]">
-    <span class="loading w-52" />
-  </div>
-{:else}
-  <article class="flex flex-col gap-2 items-center p-5 m-5">
-    <header>{title}</header>
-    <main>{content}</main>
-  </article>
-{/if}
+<article class="flex flex-col gap-2 items-center p-5 m-5">
+  <header>{title ? title : ''}</header>
+  <main>{content ? content : ''}</main>
+</article>
