@@ -1,11 +1,11 @@
 <script>
   import { Router, navigate, Route } from "svelte-routing";
   import { user, loading } from "./lib/store";
-  import Authentication from "./features/authentication/Authentication.svelte";
-  import Notes from "./features/notes/Notes.svelte";
-  import Read from "./features/notes/components/Read.svelte";
-  import Create from "./features/notes/components/Create.svelte";
-  import Folders from "./features/folders/Folders.svelte";
+  import Authentication from "./pages/Authentication.svelte";
+  import Folders from "./pages/Folders.svelte";
+  import Notes from "./pages/Notes.svelte";
+  import Create from "./features/notes/Create.svelte";
+  import Read from "./features/notes/Read.svelte";
   import ForbiddenOrNotFound from "./components/ForbiddenOrNotFound.svelte";
   import { onMount } from "svelte";
 

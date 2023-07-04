@@ -1,5 +1,5 @@
 <script>
-  import { currentFolder, userCol } from "../../../lib/store";
+  import { currentFolder, userCol } from "../../lib/store";
   export let showModal;
   let dialog;
   let title;

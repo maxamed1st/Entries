@@ -1,6 +1,6 @@
 <script>
   import { createUserWithEmailAndPassword } from "firebase/auth";
-  import { auth } from "../../../lib/firebase";
+  import { auth } from "../../lib/firebase";
   import { navigate } from "svelte-routing";
   let username = "";
   let email = "";

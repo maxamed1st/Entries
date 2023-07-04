@@ -1,7 +1,7 @@
 <script>
   import { navigate } from "svelte-routing";
-  import { userCol } from "../../../lib/store";
-  import { currentFolder } from "../../../lib/store";
+  import { userCol } from "../../lib/store";
+  import { currentFolder } from "../../lib/store";
   let content;
   let title;
   function create() {

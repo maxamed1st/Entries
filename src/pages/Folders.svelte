@@ -1,7 +1,7 @@
 <script>
-  import Navbar from "../../components/Navbar.svelte";
-  import CreateFolder from "./lib/CreateFolder.svelte";
-  import { userCol, loading, currentFolder } from "../../lib/store";
+  import Navbar from "../components/Navbar.svelte";
+  import CreateFolder from "../features/folders/CreateFolder.svelte";
+  import { userCol, loading, currentFolder } from "../lib/store";
   import { navigate } from "svelte-routing";
   import { afterUpdate } from "svelte";
 

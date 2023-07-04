@@ -1,6 +1,6 @@
 <script>
-  import Navbar from "../../components/Navbar.svelte";
-  import { userCol, currentFolder, loading } from "../../lib/store";
+  import Navbar from "../components/Navbar.svelte";
+  import { userCol, currentFolder, loading } from "../lib/store";
   import { navigate } from "svelte-routing";
   import { afterUpdate } from "svelte";
 

@@ -4,8 +4,8 @@
     signInWithPopup,
     GoogleAuthProvider,
   } from "firebase/auth";
-  import { auth } from "../../../lib/firebase";
-  import GoogleIcon from "../../../assets/GoogleIcon.svelte";
+  import { auth } from "../../lib/firebase";
+  import GoogleIcon from "../../assets/GoogleIcon.svelte";
   import { navigate } from "svelte-routing";
 
   let email = "";

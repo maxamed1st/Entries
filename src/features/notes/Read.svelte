@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { userCol, loading } from "../../../lib/store";
+  import { userCol, loading } from "../../lib/store";
 
   export let id;
   let title;
