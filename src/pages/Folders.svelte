@@ -44,5 +44,5 @@
       {/if}
     {/each}
   {/if}
-  <PlusBtn />
+  <PlusBtn onClick={e => showModal = true}/>
 </main>
