@@ -2,6 +2,7 @@
   import Navbar from "../components/Navbar.svelte";
   import CreateFolder from "../features/folders/CreateFolder.svelte";
   import { userCol, loading, currentFolder } from "../lib/store";
+  import PlusBtn from "../lib/PlusBtn.svelte";
   import { navigate } from "svelte-routing";
   import { afterUpdate } from "svelte";
 
@@ -43,10 +44,5 @@
       {/if}
     {/each}
   {/if}
-  <button
-    on:click={(e) => (showModal = true)}
-    class="rounded-full w-14 h-14 self-end mr-3 fixed bottom-3 text-5xl text-base-100 hover:text-white bg-primary hover:bg-primary-focus"
-  >
-    +
-  </button>
+  <PlusBtn />
 </main>
