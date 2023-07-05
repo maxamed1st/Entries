@@ -4,8 +4,6 @@
   import Authentication from "./pages/Authentication.svelte";
   import Folders from "./pages/Folders.svelte";
   import Notes from "./pages/Notes.svelte";
-  import Create from "./features/notes/Create.svelte";
-  import Read from "./features/notes/Read.svelte";
   import ForbiddenOrNotFound from "./components/ForbiddenOrNotFound.svelte";
   import { onMount } from "svelte";
 
@@ -29,10 +27,6 @@
 {/if}
 <Router>
   {#if $user}
-    <Route path="/notes/read/:id" let:params>
-      <Read id={params.id} />
-    </Route>
-    <Route path="/notes/create" component={Create} />
     <Route path="/notes" component={Notes} />
     <Route path="/folders" component={Folders} />
   {:else}

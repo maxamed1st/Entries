@@ -1,7 +1,7 @@
 <script>
-  import { navigate } from "svelte-routing";
   import { userCol } from "../../lib/store";
   import { currentFolder } from "../../lib/store";
+  import PlusBtn from "../../lib/PlusBtn.svelte";
   let content;
   let title;
   function create() {
@@ -10,11 +10,11 @@
     //reset the input values to empty string
     title = "";
     content = "";
-    navigate("/notes");
   }
 </script>
-<main class="flex flex-col items-center m-5 p-5">
-  <input type="text" bind:value={title} class="border w-[90vw] border-black" />
-  <textarea bind:value={content} class="border rounded border-black resize-none h-[80vh] w-[90vw]"/>
-  <button on:click={create} class="rounded bg-blue-600 w-24 h-8 text-white hover:bg-blue-500"> save </button>
+<main class="flex flex-col h-full min-h-screen">
+  <input type="text" bind:value={title} class="w-full h-10 focus:outline-none" />
+  <hr class="text-current"/>
+  <textarea bind:value={content} class="relative resize-none min-h-screen h-full w-full focus:outline-none"/>
+  <PlusBtn onClick={create} bg="bg-secondary" hover="bg-secondary-focus" />
 </main>
