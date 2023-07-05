@@ -32,10 +32,11 @@
     {#each folders as folder}
       {#if folder !== "folders"}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div
           on:click={viewNotes}
           id={folder}
-          class="card card-compact rounded-lg mx-2 text-secondary-content bg-secondary hover:bg-secondary-focus cursor-pointer"
+          class="card card-compact rounded-lg mx-2 text-primary-content bg-primary hover:bg-primary-focus cursor-pointer"
         >
           <div class="card-body">
             <h2 class="card-title">{folder}</h2>

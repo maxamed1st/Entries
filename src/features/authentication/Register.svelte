@@ -29,7 +29,7 @@
     name="username"
     bind:value={username}
     required
-    class="input bg-neutral w-full"
+    class="input bg-neutral text-neutral-content w-full"
   />
 
   <label for="email" class="label"> Email </label>
@@ -39,7 +39,7 @@
     name="username"
     bind:value={email}
     required
-    class="input bg-neutral w-full"
+    class="input bg-neutral text-neutral-content w-full"
   />
 
   <label for="password" class="label"> Password </label>
@@ -49,7 +49,7 @@
     name="password"
     bind:value={password}
     required
-    class="input bg-neutral w-full"
+    class="input bg-neutral text-neutral-content w-full"
   />
 
   <button type="submit" class="btn btn-accent mt-4"> signup </button>

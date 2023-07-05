@@ -1,4 +1,4 @@
-<svg viewBox="0 0 384.971 384.971" xmlns="http://www.w3.org/2000/svg" class="fill-accent w-6 h-6">
+<svg viewBox="0 0 384.971 384.971" xmlns="http://www.w3.org/2000/svg" class="fill-current hover:fill-accent w-10 h-10 cursor-pointer">
   <g>
     <path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03
       C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03

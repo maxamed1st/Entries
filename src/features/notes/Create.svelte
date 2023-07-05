@@ -13,8 +13,8 @@
   }
 </script>
 <main class="flex flex-col h-full min-h-screen">
-  <input type="text" bind:value={title} class="w-full h-10 focus:outline-none" />
+  <input type="text" bind:value={title} class="w-full h-10 bg-inherit focus:outline-none" />
   <hr class="text-current"/>
-  <textarea bind:value={content} class="relative resize-none min-h-screen h-full w-full focus:outline-none"/>
+  <textarea bind:value={content} class="relative resize-none min-h-screen h-full w-full bg-inherit focus:outline-none"/>
   <PlusBtn onClick={create} bg="bg-secondary" hover="bg-secondary-focus" />
 </main>

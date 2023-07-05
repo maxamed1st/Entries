@@ -24,14 +24,15 @@
 
 <Navbar />
 <main class="flex">
-<section class="w-1/3 flex flex-col gap-2 bg-base-200 h-full min-h-screen">
+<section class="w-1/3 flex flex-col gap-2 bg-base-100 h-full min-h-screen">
   {#each $userCol as doc}
   {#if doc.id !== "folders" && doc.folder == $currentFolder}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
   on:click={readDoc}
   id={doc.id}
-  class="card card-compact rounded-lg mx-2 h-24 text-secondary-content bg-secondary hover:bg-secondary-focus cursor-pointer break-all"
+  class="card card-compact rounded-lg mx-2 h-24 text-primary-content bg-primary hover:bg-primary-focus cursor-pointer break-all"
   >
   <div class="card-body gap-0 overflow-hidden">
     <h2 class="card-title">{doc.title}</h2>
