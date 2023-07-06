@@ -3,7 +3,7 @@
   import { user, loading } from "./lib/store";
   import Authentication from "./pages/Authentication.svelte";
   import Folders from "./pages/Folders.svelte";
-  import Notes from "./pages/Notes.svelte";
+  import Entries from "./pages/Entries.svelte";
   import ForbiddenOrNotFound from "./components/ForbiddenOrNotFound.svelte";
   import { onMount } from "svelte";
 
@@ -27,7 +27,7 @@
 {/if}
 <Router>
   {#if $user}
-    <Route path="/notes" component={Notes} />
+    <Route path="/entries" component={Entries} />
     <Route path="/folders" component={Folders} />
   {:else}
     <Route path="/authenticate" component={Authentication} />

@@ -21,7 +21,7 @@
     //view the folder
     const folder = e.currentTarget.id;
     currentFolder.set(folder);
-    navigate("/notes");
+    navigate("/entries");
   }
 </script>
 
