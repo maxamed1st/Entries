@@ -1,7 +1,7 @@
 <script>
   import Navbar from "../components/Navbar.svelte";
   import CreateFolder from "../features/folders/CreateFolder.svelte";
-  import { userCol, loading, currentFolder } from "../lib/store";
+  import { userCol, loading, currentFolder, currentPath } from "../lib/store";
   import PlusBtn from "../lib/PlusBtn.svelte";
   import { navigate } from "svelte-routing";
   import { afterUpdate } from "svelte";
@@ -12,6 +12,8 @@
   afterUpdate(async () => {
     //make sure data is loaded correctly
     if ($loading) await loading.isLoading();
+    //update currentPath
+    currentPath.set(['Folders']);
     //extract folder data if such exists
     const folderDocs = $userCol?.find((doc) => doc.id == "folders");
     folders = folderDocs ? Object.values(folderDocs) : null;

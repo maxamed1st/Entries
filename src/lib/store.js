@@ -37,6 +37,9 @@ export const user = readable(null, set => {
   return unsubscribe;
 });
 
+//current path for Breadcrumbs
+export const currentPath = writable(['folders']);
+
 //set up store to hold the current folders id
 export const currentFolder = writable("default");
 function userCollection() {

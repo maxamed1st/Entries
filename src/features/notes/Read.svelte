@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { userCol, loading } from "../../lib/store";
+  import { userCol, loading, currentFolder, currentPath } from "../../lib/store";
 
   export let id;
   let title;
@@ -13,6 +13,11 @@
     title = note?.title;
     content = note?.content;
   });
+
+  $: {
+    //update currentPath
+    currentPath.set([$currentFolder, "entries", title]);
+  }
 </script>
 
 <article class="flex flex-col gap-2 text-current p-5">
