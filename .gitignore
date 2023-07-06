@@ -24,7 +24,5 @@ dist-ssr
 *.sw?
 
 #firebase
-firebase.json
 .firebaserc
-firestore.rules
 .firebase
