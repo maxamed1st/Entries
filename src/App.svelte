@@ -1,4 +1,5 @@
 <script>
+  import Loading from './lib/Loading.svelte';
   import { Router, navigate, Route } from "svelte-routing";
   import { user, loading } from "./lib/store";
   import Authentication from "./pages/Authentication.svelte";
@@ -20,11 +21,7 @@
   });
 </script>
 
-{#if $loading}
-  <div class="grid place-content-center h-[100vh]">
-    <span class="loading w-52" />
-  </div>
-{/if}
+<Loading />
 <Router>
   {#if $user}
     <Route path="/entries" component={Entries} />
