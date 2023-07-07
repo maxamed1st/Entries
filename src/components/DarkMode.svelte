@@ -1,19 +1,19 @@
 <script>
+  import { darkMode } from "../lib/store";
   import { afterUpdate } from "svelte";
+
   export let dark = "dark";
   export let light = "light";
   
-  let darkMode = true;
-  
   afterUpdate(() => {
-    if(darkMode) document.documentElement.setAttribute("data-theme", dark);
+    if($darkMode) document.documentElement.setAttribute("data-theme", dark);
     else document.documentElement.setAttribute("data-theme", light);
   });
 </script>
 
 <label class="swap swap-rotate">
   <!-- Toggle icon based darkMode -->
-  <input type="checkbox" bind:checked={darkMode} />
+  <input type="checkbox" bind:checked={$darkMode} />
   <!-- sun icon -->
   <svg
     class="swap-on fill-current w-10 h-10"

@@ -87,3 +87,5 @@ function userCollection() {
   return { subscribe, createData, init, createFolder };
 }
 export const userCol = userCollection();
+
+export const darkMode = writable("dark");
