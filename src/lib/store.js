@@ -1,7 +1,7 @@
 import { readable, writable } from "svelte/store";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, setDoc, doc, Timestamp } from "firebase/firestore";
 
 //loading state to indicate if $user and $userCol has been correctly populated
 function load() {
@@ -56,10 +56,13 @@ function userCollection() {
   }
   async function createData(title, content, folder) {
     try {
+      //get current time
+      let createdAt = Timestamp.now();
+      console.log(createdAt);
       //add new data to the collection
-      const docRef = await addDoc(collection(db, uid), { title, content, folder });
+      const docRef = await addDoc(collection(db, uid), { title, content, folder, createdAt });
       //update the store
-      update(data => [...data, { id: docRef.id, title, content, folder }])
+      update(data => [...data, { id: docRef.id, title, content, folder, createdAt }])
     } catch (err) {
       if (!uid) throw new Error("must be logged in to use this feature")
       throw err;

@@ -33,11 +33,12 @@
         <div
           on:click={readDoc}
           id={doc.id}
-          class="card card-compact rounded-lg mx-2 h-24 text-primary-content bg-primary hover:bg-primary-focus cursor-pointer break-all"
+          class="card card-compact rounded-lg mx-2 min-h-20 max-h-[120px] text-primary-content bg-primary hover:bg-primary-focus cursor-pointer break-all"
         >
-          <div class="card-body gap-0 overflow-hidden">
-            <h2 class="card-title">{doc.title}</h2>
-            <p1>{doc.content}</p1>
+          <div class="card-body gap-0 !py-0 overflow-hidden">
+            <h2 class="card-title pt-1 flex-1 basis-1/5">{doc.title}</h2>
+            <p1 class="overflow-hidden flex-1 basis-3/5">{doc.content}</p1>
+            <div class="pt-1 flex-1 basis-1/5 text-right">created at {doc.createdAt.toDate().toLocaleString()}</div>
           </div>
         </div>
       {/if}
