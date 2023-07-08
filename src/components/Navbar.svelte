@@ -5,6 +5,7 @@
   import { signOut } from "firebase/auth";
   import DarkMode from "./DarkMode.svelte";
   import Breadcrumbs from "../lib/Breadcrumbs.svelte";
+  import BackBtn from "../lib/BackBtn.svelte";
   function logout() {
     signOut(auth);
     navigate("authenticate");
@@ -12,6 +13,7 @@
 </script>
 
 <nav class="flex gap-2 px-5 py-3 bg-base-200">
+  <BackBtn />
   <Breadcrumbs />
   <DarkMode />
   <!-- svelte-ignore a11y-click-events-have-key-events -->
