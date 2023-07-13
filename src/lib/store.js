@@ -38,7 +38,7 @@ export const user = readable(null, set => {
 });
 
 //current path for Breadcrumbs
-export const currentPath = writable(['folders']);
+export const currentPath = writable([]);
 
 //set up store to hold the current folders id
 export const currentFolder = writable("default");
