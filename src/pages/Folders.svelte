@@ -41,7 +41,7 @@
           class="card card-compact rounded-lg mx-2 text-primary-content bg-primary hover:bg-primary-focus cursor-pointer"
         >
           <div class="card-body">
-            <h2 class="card-title">{folder}</h2>
+            <h2 class="card-title font-montserrat">{folder}</h2>
           </div>
         </div>
       {/if}

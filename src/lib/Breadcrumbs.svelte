@@ -2,7 +2,7 @@
   import { currentPath } from "./store";
 </script>
 
-<div class="breadcrumbs text-3xl mr-auto">
+<div class="breadcrumbs flex items-center text-lg font-montserrat mr-auto">
   <ul>
     {#each $currentPath as path}
       <li> {path} </li>

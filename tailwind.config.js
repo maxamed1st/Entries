@@ -4,7 +4,12 @@ export default {
     "./src/**/*.{js,svelte}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+        montserrat: ['Montserrat', 'Helvetica', 'Arial', 'sans-serif']
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
