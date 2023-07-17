@@ -5,6 +5,7 @@
   import BackBtn from "../lib/BackBtn.svelte";
   import Profile from "../assets/Profile.svelte";
   import { user } from "../lib/store";
+    import DelUser from "../lib/DelUser.svelte";
 
 </script>
 
@@ -16,10 +17,9 @@
     <ul
       class="dropdown-content z-[1] w-52 -translate-x-[165px] translate-y-3 bg-base-200"
     >
-      <li class="flex"><DarkMode /></li>
-      <li class:hidden={!$user}>
-        <Logout />
-      </li>
+      <li class="flex"> <DarkMode /> </li>
+      <li class:hidden={!$user}> <DelUser /> </li>
+      <li class:hidden={!$user}> <Logout /> </li>
     </ul>
   </div>
 </nav>
