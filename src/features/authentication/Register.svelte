@@ -36,7 +36,7 @@
   <input
     type="text"
     id="email"
-    name="username"
+    name="email"
     bind:value={email}
     required
     class="input bg-neutral text-neutral-content w-full"

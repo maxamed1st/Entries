@@ -38,8 +38,8 @@
   <label for="email" class="label"> Email </label>
   <input
     type="text"
-    id="email"
-    name="username"
+    id="login-email"
+    name="login-email"
     bind:value={email}
     required
     class="input bg-neutral text-neutral-content w-full"
@@ -48,8 +48,8 @@
   <label for="password" class="label"> Password </label>
   <input
     type="password"
-    id="password"
-    name="password"
+    id="login-password"
+    name="login-password"
     bind:value={password}
     required
     class="input bg-neutral text-neutral-content w-full"
