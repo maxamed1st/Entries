@@ -58,7 +58,6 @@ function userCollection() {
     try {
       //get current time
       let createdAt = Timestamp.now();
-      console.log(createdAt);
       //add new data to the collection
       const docRef = await addDoc(collection(db, uid), { title, content, folder, createdAt });
       //update the store
