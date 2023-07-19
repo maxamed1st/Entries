@@ -13,9 +13,14 @@
     //make sure data is loaded correctly
     if ($loading) await loading.isLoading();
     //update currentPath
-    currentPath.set(['Folders']);
+    currentPath.set(["Folders"]);
     //extract folder data if such exists
-    const folderDocs = $userCol?.find((doc) => doc.id == "folders");
+    const folderDocs = { ...$userCol?.find((doc) => doc.id == "folders") };
+    //remove id and current, fields
+    if (folderDocs) {
+      delete folderDocs.id;
+      delete folderDocs.current;
+    }
     folders = folderDocs ? Object.values(folderDocs) : null;
   });
 
@@ -32,20 +37,18 @@
   <CreateFolder bind:showModal />
   {#if Array.isArray(folders)}
     {#each folders as folder}
-      {#if folder !== "folders"}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div
-          on:click={viewNotes}
-          id={folder}
-          class="card card-compact rounded-lg mx-2 text-primary-content bg-primary hover:bg-primary-focus cursor-pointer"
-        >
-          <div class="card-body">
-            <h2 class="card-title font-montserrat">{folder}</h2>
-          </div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <div
+        on:click={viewNotes}
+        id={folder}
+        class="card card-compact rounded-lg mx-2 text-primary-content bg-primary hover:bg-primary-focus cursor-pointer"
+      >
+        <div class="card-body">
+          <h2 class="card-title font-montserrat">{folder}</h2>
         </div>
-      {/if}
+      </div>
     {/each}
   {/if}
-  <PlusBtn onClick={e => showModal = true}/>
+  <PlusBtn onClick={() => (showModal = true)} />
 </main>

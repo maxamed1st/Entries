@@ -1,7 +1,7 @@
 import { readable, writable } from "svelte/store";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, addDoc, setDoc, doc, Timestamp } from "firebase/firestore";
+import { collection, getDocs, addDoc, setDoc, doc, Timestamp, getDoc } from "firebase/firestore";
 
 //loading state to indicate if $user and $userCol has been correctly populated
 function load() {
@@ -31,6 +31,8 @@ export const user = readable(null, set => {
     uid = user ? user.uid : null;
     //initialize userCol
     await userCol.init();
+    //set currentFolder to the last viewed folder
+    await currentFolder.init();
     //set loading store to false
     loading.resolve();
   });
@@ -40,8 +42,30 @@ export const user = readable(null, set => {
 //current path for Breadcrumbs
 export const currentPath = writable([]);
 
-//set up store to hold the current folders id
-export const currentFolder = writable("default");
+//store the current folder
+function curFolder() {
+  const { subscribe, set } = writable(null);
+
+  //set current folder and save it to db
+  async function setCurrent(value) {
+    set(value);
+    //save value to folders document
+    const folderRef = doc(db, uid, "folders");
+    await setDoc(folderRef, { current: value }, { merge: true });
+  }
+
+  //get the last viewed folder and set it to current
+  async function init() {
+    if(!uid) return set(null);
+    const docRef = doc(db, uid, "folders")
+    const snapshot = await getDoc(docRef);
+    if (snapshot.exists()) set(snapshot.data().current)
+  }
+
+  return { subscribe, init, set: setCurrent };
+}
+export const currentFolder = curFolder();
+
 function userCollection() {
   //set up writable store
   const { subscribe, set, update } = writable([]);
@@ -76,7 +100,7 @@ function userCollection() {
     update(data => {
       //find the index for "folders"
       const index = data?.findIndex(item => item.id == "folders");
-      //update the item if the index exists otherwise re initilize the store
+      //update the item if the index exists otherwise re initialize the store
       (index !== -1) ? data[index] = { ...data[index], [folder]: folder } : init();
       return data;
     });
